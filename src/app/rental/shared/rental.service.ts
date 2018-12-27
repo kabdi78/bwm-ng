@@ -15,7 +15,7 @@ public getRentalById(rentalId: string): Observable<any> {
   return this.http.get('/api/v1/rentals/' + rentalId);
 }
 public getRentals(): Observable<any>{
-  return this.http.get('/api/v1/rentals/');
+  return this.http.get('/api/v1/rentals');
 }
 
 
