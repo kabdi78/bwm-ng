@@ -8,10 +8,12 @@ const rentalRoutes = require('./routes/rentals'),
         userRoutes = require('./routes/users'),
         bookingRoutes = require('./routes/bookings') ;
 
-mongoose.connect(config.DB_URI).then(() => {
+mongoose.connect(config.DB_URI, { useNewUrlParser: true }).then(() => {
       const fakeDb = new FakeDb();
-      //fakeDb.seedDb();
+      fakeDb.seedDb();
+      console.log("Mongodb connection successful");
 });
+
 
 const app = express();
 
