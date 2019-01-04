@@ -18,6 +18,11 @@
       letter-spacing: 1px;
       color: $main-color;
       font-weight: 500;
+  
+      img {
+        margin-top: 15px;
+        height: 20px;
+      }
     }
   
   
@@ -36,6 +41,14 @@
         border-color: $main-color !important;
         color: $main-color !important;
         box-shadow: none;
+      }
+    }
+
+    .dropdown-item {
+      font-size: 14px;
+  
+      &:active, &:focus {
+        background-color: $main-color;
       }
     }
 }
