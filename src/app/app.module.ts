@@ -13,6 +13,8 @@ import { AuthModule } from './auth/auth.module';
 import { ManageModule } from './manage/manage.module';
 
 
+
+
 const routes: Routes = [
   {path: '', redirectTo: '/rentals', pathMatch: 'full'}
 ]
