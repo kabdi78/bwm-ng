@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common'
 import { Routes, RouterModule, Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { NgPipesModule } from 'ngx-pipes';
+import { NgPipesModule, UcWordsPipe } from 'ngx-pipes';
 import { MapModule } from '../common/map/map.module';
 import { Daterangepicker } from 'ng2-daterangepicker';
 import { FormsModule } from '@angular/forms';
+import { EditableModule } from '../common/components/editable/editable.module';
+import { ImageUploadModule } from '../common/components/image-upload/image-upload.module';
 
 import { RentalCreateComponent } from './rental-create/rental-create.component';
 import { RentalListComponent } from './rental-list/rental-list.component';
@@ -21,6 +23,8 @@ import { UppercasePipe } from '../common/pipes/uppercase.pipe';
 import { BookingService } from '../booking/shared/booking.service';
 
 import { AuthGuard } from '../auth/shared/auth.guard';
+import { RentalGuard } from './shared/rental.guard';
+import { RentalUpdateComponent } from './rental-update/rental-update.component';
 
 
 
@@ -31,10 +35,10 @@ const routes: Routes = [
       component: RentalComponent,
       children: [
           { path: '', component: RentalListComponent },
-        { path: 'new', component: RentalCreateComponent, canActivate: [AuthGuard] },
-        //{ path: ':rentalId/edit', component: RentalUpdateComponent, canActivate: [AuthGuard, RentalGuard] },
+          { path: 'new', component: RentalCreateComponent, canActivate: [AuthGuard] },
+          { path: ':rentalId/edit', component: RentalUpdateComponent, canActivate: [AuthGuard, RentalGuard] },
           { path: ':rentalId', component: RentalDetailComponent},
-        { path: ':city/homes', component: RentalSearchComponent}
+          { path: ':city/homes', component: RentalSearchComponent}
       ]
     }
   ]
@@ -48,7 +52,8 @@ const routes: Routes = [
         UppercasePipe,
         RentalDetailBookingComponent,
         RentalSearchComponent,
-        RentalCreateComponent
+        RentalCreateComponent,
+        RentalUpdateComponent
     ],
     imports: [
         CommonModule,
@@ -57,13 +62,17 @@ const routes: Routes = [
         NgPipesModule,
         MapModule,
         Daterangepicker,
-        FormsModule
+        FormsModule,
+        EditableModule,
+        ImageUploadModule
     ],
     providers: [
         RentalService,
         AuthGuard,
+        RentalGuard,
         HelperService,
-        BookingService
+        BookingService,
+        UcWordsPipe
     ]
 
 })
